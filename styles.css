@@ -16,6 +16,8 @@
   --reflective-gray: #95A5A6;
   --uncertain-yellow: #F1C40F;
   --hopeful-green: #2ECC71;
+  --grateful-pink: #FF6B9D;
+  --sharing-teal: #20BF9F;
   
   /* 中性色调 */
   --bg-light: #FAFAFA;
@@ -451,6 +453,14 @@ body {
   border-left-color: var(--thoughtful-purple);
 }
 
+.log-entry.feeling-grateful {
+  border-left-color: var(--grateful-pink);
+}
+
+.log-entry.feeling-sharing {
+  border-left-color: var(--sharing-teal);
+}
+
 .log-date {
   display: flex;
   flex-direction: column;
@@ -786,6 +796,18 @@ body {
 
 .feeling-reflective {
   background: var(--reflective-gray);
+}
+
+.feeling-grateful {
+  background: var(--grateful-pink);
+}
+
+.feeling-sharing {
+  background: var(--sharing-teal);
+}
+
+.feeling-thoughtful {
+  background: var(--thoughtful-purple);
 }
 
 .post-content h3 {
