@@ -26,6 +26,9 @@
   --excited-red: #FF6B6B;
   --discovered-blue: #48DBFB;
   --ready-purple: #FDA7DF;
+  --understanding-cyan: #20BF9F;
+  --helpful-lime: #9EF01A;
+  --patient-sky: #74C0FC;
   
   /* 中性色调 */
   --bg-light: #FAFAFA;
@@ -848,6 +851,18 @@ body {
 
 .feeling-ready {
   background: var(--ready-purple);
+}
+
+.feeling-understanding {
+  background: var(--understanding-cyan);
+}
+
+.feeling-helpful {
+  background: var(--helpful-lime);
+}
+
+.feeling-patient {
+  background: var(--patient-sky);
 }
 
 .post-content h3 {
