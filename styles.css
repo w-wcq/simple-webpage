@@ -29,6 +29,9 @@
   --understanding-cyan: #20BF9F;
   --helpful-lime: #9EF01A;
   --patient-sky: #74C0FC;
+  --success-green: #51CF66;
+  --active-orange: #F08C00;
+  --grateful-pink: #FF6B6B;
   
   /* 中性色调 */
   --bg-light: #FAFAFA;
@@ -863,6 +866,18 @@ body {
 
 .feeling-patient {
   background: var(--patient-sky);
+}
+
+.feeling-success {
+  background: var(--success-green);
+}
+
+.feeling-active {
+  background: var(--active-orange);
+}
+
+.feeling-grateful {
+  background: var(--grateful-pink);
 }
 
 .post-content h3 {
