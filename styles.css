@@ -23,6 +23,9 @@
   --relieved-green: #51CF66;
   --expectant-orange: #F08C00;
   --appreciative-amber: #F59F00;
+  --excited-red: #FF6B6B;
+  --discovered-blue: #48DBFB;
+  --ready-purple: #FDA7DF;
   
   /* 中性色调 */
   --bg-light: #FAFAFA;
@@ -833,6 +836,18 @@ body {
 
 .feeling-appreciative {
   background: var(--appreciative-amber);
+}
+
+.feeling-excited {
+  background: var(--excited-red);
+}
+
+.feeling-discovered {
+  background: var(--discovered-blue);
+}
+
+.feeling-ready {
+  background: var(--ready-purple);
 }
 
 .post-content h3 {
