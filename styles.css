@@ -20,6 +20,9 @@
   --sharing-teal: #20BF9F;
   --informed-blue: #54A0FF;
   --connected-purple: #5F27CD;
+  --relieved-green: #51CF66;
+  --expectant-orange: #F08C00;
+  --appreciative-amber: #F59F00;
   
   /* 中性色调 */
   --bg-light: #FAFAFA;
@@ -818,6 +821,18 @@ body {
 
 .feeling-connected {
   background: var(--connected-purple);
+}
+
+.feeling-relieved {
+  background: var(--relieved-green);
+}
+
+.feeling-expectant {
+  background: var(--expectant-orange);
+}
+
+.feeling-appreciative {
+  background: var(--appreciative-amber);
 }
 
 .post-content h3 {
