@@ -18,6 +18,8 @@
   --hopeful-green: #2ECC71;
   --grateful-pink: #FF6B9D;
   --sharing-teal: #20BF9F;
+  --informed-blue: #54A0FF;
+  --connected-purple: #5F27CD;
   
   /* 中性色调 */
   --bg-light: #FAFAFA;
@@ -808,6 +810,14 @@ body {
 
 .feeling-thoughtful {
   background: var(--thoughtful-purple);
+}
+
+.feeling-informed {
+  background: var(--informed-blue);
+}
+
+.feeling-connected {
+  background: var(--connected-purple);
 }
 
 .post-content h3 {
