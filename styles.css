@@ -373,6 +373,130 @@ body {
     margin-bottom: 0.5rem;
 }
 
+/* 聊天区域 */
+.chat {
+    padding: 100px 0;
+    background: #f0f2f5;
+}
+
+.chat h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.chat-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: #f9f9f9;
+}
+
+.message {
+    display: flex;
+    gap: 10px;
+    max-width: 80%;
+    animation: slideIn 0.3s ease-out;
+}
+
+.message.bot-message {
+    align-self: flex-start;
+}
+
+.message.user-message {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.message-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #3498db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.message.bot-message .message-icon {
+    background: #3498db;
+}
+
+.message.user-message .message-icon {
+    background: #2ecc71;
+}
+
+.message-content {
+    background: white;
+    padding: 12px 15px;
+    border-radius: 18px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.message-content h4 {
+    margin: 0 0 5px 0;
+    font-size: 0.9rem;
+    color: #2c3e50;
+}
+
+.message-content p {
+    margin: 0;
+    color: #333;
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #eee;
+}
+
+#userInput {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    font-size: 1rem;
+}
+
+#userInput:focus {
+    border-color: #3498db;
+}
+
+#sendMessage {
+    background: #3498db;
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#sendMessage:hover {
+    background: #2980b9;
+}
+
 /* 页脚 */
 .footer {
     background: #1a252f;

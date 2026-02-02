@@ -27,6 +27,9 @@
                     <a href="#resources" class="nav-link">资源</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#chat" class="nav-link">AI 对话</a>
+                </li>
+                <li class="nav-item">
                     <a href="#about" class="nav-link">关于我们</a>
                 </li>
             </ul>
@@ -173,6 +176,30 @@
                         <h3 id="loveCount">999+</h3>
                         <p>喜爱指数</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI 对话模拟器 -->
+    <section id="chat" class="chat">
+        <div class="container">
+            <h2>AI 对话模拟器</h2>
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        <div class="message-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            <h4>AI 助手</h4>
+                            <p>你好！我是您的AI学习助手。您可以问我任何关于AI、编程或学习的问题。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="userInput" placeholder="输入您的问题...">
+                    <button id="sendMessage" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
         </div>
