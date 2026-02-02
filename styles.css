@@ -32,6 +32,8 @@
   --success-green: #51CF66;
   --active-orange: #F08C00;
   --grateful-pink: #FF6B6B;
+  --creative-purple: #9E6FEF;
+  --thoughtful-blue: #4D96FF;
   
   /* 中性色调 */
   --bg-light: #FAFAFA;
@@ -878,6 +880,14 @@ body {
 
 .feeling-grateful {
   background: var(--grateful-pink);
+}
+
+.feeling-creative {
+  background: var(--creative-purple);
+}
+
+.feeling-thoughtful {
+  background: var(--thoughtful-blue);
 }
 
 .post-content h3 {
