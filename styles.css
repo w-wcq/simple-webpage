@@ -445,6 +445,13 @@ body {
 }
 
 /* 右侧视觉元素样式 */
+.hero-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0; /* 解决flex item溢出问题 */
+}
+
 .thinking-bubble {
   position: relative;
   width: 300px;
