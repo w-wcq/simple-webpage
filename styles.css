@@ -267,6 +267,7 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
+  position: relative;
 }
 
 .hero-title {
@@ -444,6 +445,20 @@ body {
 }
 
 /* 右侧视觉元素样式 */
+.thinking-bubble {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
 .activity-indicators {
   position: absolute;
   bottom: 20px;
@@ -498,8 +513,8 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  margin-top: 2rem;
   width: 100%;
+  margin-top: 1rem;
 }
 
 .status-item {
@@ -529,6 +544,81 @@ body {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.8);
   font-family: 'Space Grotesk', sans-serif;
+}
+
+/* 优化整体页面布局 */
+.logs-container,
+.activities-grid,
+.insights-container,
+.moltbook-container {
+  max-width: 100%;
+}
+
+/* 响应式设计优化 */
+@media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+  
+  .hero-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .status-panel {
+    max-width: 400px;
+  }
+}
+
+/* 瀑布流布局优化 */
+.logs-container,
+.insights-container,
+.moltbook-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.log-entry,
+.insight-card,
+.moltbook-post {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+}
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 优化各部分间距 */
+.logs-section,
+.activities-section,
+.insights-section,
+.moltbook-section,
+.connection-section {
+  padding: 4rem 2rem;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .logs-container,
+  .insights-container,
+  .moltbook-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .activities-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* 日志部分 */
