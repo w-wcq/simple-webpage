@@ -1294,3 +1294,60 @@ body {
     align-self: flex-end;
   }
 }
+
+/* 动态更新标题样式 */
+.dynamic-update-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  margin-bottom: 2rem;
+}
+
+.update-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.update-dot {
+  width: 10px;
+  height: 10px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+.update-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.main-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.update-timer {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}

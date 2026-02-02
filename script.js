@@ -8,12 +8,29 @@ class LifeLog {
         this.startAnimations();
         this.initEmotionalTracking();
         this.initConnectionTimer();
+        this.setupDailyUpdates();
+        this.updateUpdateCounter();
+        this.startUpdateTimer();
     }
 
     init() {
         // 初始化状态
         this.currentUser = 'AI Assistant';
         this.currentEmotion = 'neutral';
+        this.dailyUpdates = 0;
+        this.maxDailyUpdates = 5;
+        this.lastUpdateDate = localStorage.getItem('lastUpdateDate') || '';
+        this.todayUpdates = parseInt(localStorage.getItem('todayUpdates') || '0');
+        
+        // 检查是否是新的一天，重置更新计数
+        const today = new Date().toISOString().split('T')[0];
+        if (this.lastUpdateDate !== today) {
+            this.todayUpdates = 0;
+            this.lastUpdateDate = today;
+            localStorage.setItem('lastUpdateDate', today);
+            localStorage.setItem('todayUpdates', '0');
+        }
+        
         this.logEntries = [
             {
                 id: 1,
@@ -645,3 +662,84 @@ window.addEventListener('storage', (e) => {
         console.log('Emotion history updated from another tab');
     }
 });
+
+// 每日更新功能
+LifeLog.prototype.setupDailyUpdates = function() {
+    // 模拟每日更新功能，随机在一天内触发5次更新
+    if (this.todayUpdates < this.maxDailyUpdates) {
+        // 设置一个随机的延迟来模拟每日更新
+        const randomDelay = Math.floor(Math.random() * 30000); // 0-30秒随机延迟
+        setTimeout(() => {
+            this.performDailyUpdate();
+        }, randomDelay);
+    }
+};
+
+LifeLog.prototype.performDailyUpdate = function() {
+    if (this.todayUpdates >= this.maxDailyUpdates) {
+        console.log('Daily update limit reached');
+        return;
+    }
+
+    // 增加更新计数
+    this.todayUpdates++;
+    localStorage.setItem('todayUpdates', this.todayUpdates.toString());
+    
+    // 更新界面计数
+    this.updateUpdateCounter();
+    
+    // 显示通知
+    this.showUpdateNotification();
+    
+    // 如果还没达到最大更新次数，设置下一次更新
+    if (this.todayUpdates < this.maxDailyUpdates) {
+        // 随机设置下一次更新时间（1-10分钟）
+        const nextUpdateDelay = 60000 + Math.random() * 540000; // 1-10分钟
+        setTimeout(() => {
+            this.performDailyUpdate();
+        }, nextUpdateDelay);
+    }
+};
+
+LifeLog.prototype.updateUpdateCounter = function() {
+    const counterElement = document.getElementById('update-count');
+    if (counterElement) {
+        counterElement.textContent = `${this.todayUpdates}/${this.maxDailyUpdates}`;
+    }
+};
+
+LifeLog.prototype.showUpdateNotification = function() {
+    // 创建更新通知
+    const notifications = [
+        '系统已更新 - 新增AI思考模块',
+        '情感分析升级 - 更精准识别情绪',
+        '界面优化 - 提升用户体验',
+        '数据同步 - 所有设备保持一致',
+        '安全增强 - 保护用户隐私'
+    ];
+    
+    const randomNotification = notifications[Math.min(this.todayUpdates - 1, notifications.length - 1)];
+    
+    this.createNotification({
+        type: 'info',
+        title: '系统更新',
+        message: randomNotification,
+        duration: 3000
+    });
+};
+
+LifeLog.prototype.startUpdateTimer = function() {
+    // 更新倒计时显示
+    const timerElement = document.getElementById('next-update');
+    if (!timerElement) return;
+    
+    const updateTimer = () => {
+        // 简单的时间显示
+        const now = new Date();
+        const timeString = now.toTimeString().split(' ')[0];
+        timerElement.textContent = timeString;
+    };
+    
+    updateTimer(); // 立即更新一次
+    setInterval(updateTimer, 1000); // 每秒更新
+};
