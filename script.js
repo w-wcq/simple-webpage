@@ -7,6 +7,8 @@ class NeuralGarden {
         this.bindEvents();
         this.startAnimations();
         this.loadInsights();
+        this.initLearningTracker();
+        this.initMeditationFeature();
     }
 
     init() {
@@ -14,10 +16,13 @@ class NeuralGarden {
         this.connectionCount = 0;
         this.learningCount = 42;
         this.insightCount = 127;
+        this.focusSessions = 0;
         
         // 初始化状态
         this.currentSection = 'home';
         this.isMenuOpen = false;
+        this.learningSessions = [];
+        this.focusModeActive = false;
         
         // 获取DOM元素
         this.navLinks = document.querySelectorAll('.nav-link');
@@ -60,8 +65,143 @@ class NeuralGarden {
             navToggle.addEventListener('click', this.toggleMobileMenu.bind(this));
         }
 
+        // 添加新的交互事件
+        this.addFocusModeToggle();
+        this.addLearningTrackerEvents();
+        this.addInsightSharing();
+
         // 按钮悬停效果
         this.addHoverEffects();
+    }
+
+    addFocusModeToggle() {
+        // 添加专注模式切换功能
+        const focusToggle = document.createElement('button');
+        focusToggle.className = 'focus-mode-toggle';
+        focusToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        focusToggle.title = '专注模式';
+        focusToggle.addEventListener('click', this.toggleFocusMode.bind(this));
+        document.body.appendChild(focusToggle);
+    }
+
+    toggleFocusMode() {
+        this.focusModeActive = !this.focusModeActive;
+        document.body.classList.toggle('focus-mode', this.focusModeActive);
+        
+        const toggleBtn = document.querySelector('.focus-mode-toggle');
+        if (this.focusModeActive) {
+            toggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+            toggleBtn.title = '退出专注模式';
+            this.showNotification('专注模式已开启', 'info');
+        } else {
+            toggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+            toggleBtn.title = '专注模式';
+            this.showNotification('专注模式已关闭', 'info');
+        }
+    }
+
+    addLearningTrackerEvents() {
+        // 为知识卡片添加学习追踪功能
+        this.knowledgeCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('.progress-ring')) {
+                    this.trackLearning(card.dataset.category);
+                }
+            });
+        });
+    }
+
+    trackLearning(category) {
+        const session = {
+            category,
+            timestamp: new Date(),
+            duration: Math.floor(Math.random() * 300) + 60 // 1-5分钟随机
+        };
+        
+        this.learningSessions.push(session);
+        this.learningCount++;
+        
+        // 更新计数器
+        this.animateCounter(document.getElementById('learningCount'), this.learningCount);
+        
+        // 显示学习记录
+        this.showNotification(`已记录 ${category} 学习`, 'success');
+    }
+
+    initLearningTracker() {
+        // 初始化学习追踪系统
+        this.learningHistory = JSON.parse(localStorage.getItem('neuralGarden_learningHistory')) || [];
+        this.renderLearningHistory();
+    }
+
+    renderLearningHistory() {
+        // 渲染学习历史（在实际应用中会显示在特定区域）
+        console.log('Learning history:', this.learningHistory);
+    }
+
+    addInsightSharing() {
+        // 为洞见卡片添加分享功能
+        this.insightCards.forEach(card => {
+            const shareBtn = document.createElement('button');
+            shareBtn.className = 'insight-share-btn';
+            shareBtn.innerHTML = '<i class="fas fa-share-alt"></i>';
+            shareBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.shareInsight(card);
+            });
+            card.appendChild(shareBtn);
+        });
+    }
+
+    shareInsight(card) {
+        const title = card.querySelector('h3').textContent;
+        const content = card.querySelector('p').textContent;
+        
+        if (navigator.share) {
+            navigator.share({
+                title: `Neural Garden 洞见: ${title}`,
+                text: content,
+                url: window.location.href
+            }).catch(console.error);
+        } else {
+            this.copyToClipboard(`${title}: ${content}`);
+            this.showNotification('洞见已复制到剪贴板', 'info');
+        }
+    }
+
+    copyToClipboard(text) {
+        navigator.clipboard.writeText(text).catch(console.error);
+    }
+
+    initMeditationFeature() {
+        // 添加冥想/专注功能
+        const meditationCard = document.createElement('div');
+        meditationCard.className = 'meditation-card';
+        meditationCard.innerHTML = `
+            <div class="meditation-content">
+                <h3>神经花园冥想</h3>
+                <p>在知识的海洋中寻找内心的平静</p>
+                <div class="meditation-controls">
+                    <button class="meditation-start">开始冥想</button>
+                    <span class="meditation-timer">00:00</span>
+                </div>
+            </div>
+        `;
+        
+        // 将冥想卡片添加到适当位置
+        const insightsSection = document.getElementById('insights');
+        if (insightsSection) {
+            insightsSection.insertAdjacentElement('afterend', meditationCard);
+            
+            const startBtn = meditationCard.querySelector('.meditation-start');
+            startBtn.addEventListener('click', this.startMeditation.bind(this));
+        }
+    }
+
+    startMeditation() {
+        this.showNotification('冥想会话开始，专注于当下的学习', 'info');
+        this.focusSessions++;
+        this.animateCounter(document.getElementById('insightCount'), this.insightCount + this.focusSessions);
     }
 
     startAnimations() {
@@ -76,6 +216,31 @@ class NeuralGarden {
         
         // 启动有机背景动画
         this.animateOrganicBg();
+        
+        // 启动新的动画
+        this.animateInsightCards();
+        this.animateTimelineItems();
+    }
+
+    animateInsightCards() {
+        // 为洞见卡片添加特殊动画
+        this.insightCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.2}s`;
+            card.addEventListener('mouseenter', () => {
+                card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.05)';
+            });
+        });
+    }
+
+    animateTimelineItems() {
+        // 为时间线项目添加动画
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.3}s`;
+        });
     }
 
     // 节流函数
@@ -402,6 +567,97 @@ function addNotificationStyles() {
 
         .notification-content i {
             font-size: 1.2rem;
+        }
+        
+        .focus-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-combo);
+            border: none;
+            color: white;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+        
+        .focus-mode-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        .focus-mode {
+            filter: contrast(1.1) saturate(1.1);
+        }
+        
+        .insight-share-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
+        
+        .insight-card:hover .insight-share-btn {
+            opacity: 1;
+        }
+        
+        .meditation-card {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(74, 124, 89, 0.1), rgba(42, 77, 105, 0.1));
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid rgba(74, 124, 89, 0.2);
+        }
+        
+        .meditation-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .meditation-start {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            background: var(--gradient-combo);
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .meditation-start:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .meditation-timer {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--organic-dark);
         }
     `;
     document.head.appendChild(style);

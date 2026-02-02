@@ -45,6 +45,12 @@ body {
   line-height: 1.6;
 }
 
+/* 专注模式样式 */
+body.focus-mode {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  color: var(--text-light);
+}
+
 /* 有机背景元素 */
 .organic-bg {
   position: fixed;
@@ -117,6 +123,11 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.focus-mode .main-nav {
+  background: rgba(26, 26, 46, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .nav-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -187,6 +198,10 @@ body {
   position: relative;
 }
 
+.focus-mode .nav-link {
+  color: var(--text-light);
+}
+
 .nav-link::before {
   content: '';
   position: absolute;
@@ -224,6 +239,10 @@ body {
   transition: var(--transition);
 }
 
+.focus-mode .nav-toggle span {
+  background: var(--text-light);
+}
+
 /* 主内容区域 */
 .main-content {
   margin-top: 100px;
@@ -236,6 +255,10 @@ body {
   align-items: center;
   padding: 4rem 2rem;
   position: relative;
+}
+
+.focus-mode .hero-section {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
 }
 
 .hero-container {
@@ -253,6 +276,13 @@ body {
   margin-bottom: 1.5rem;
   font-family: 'Space Grotesk', sans-serif;
   background: var(--gradient-combo);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.focus-mode .hero-title {
+  background: linear-gradient(135deg, #47b5ff, #a3c9a8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -280,6 +310,10 @@ body {
   margin-bottom: 2.5rem;
   color: var(--organic-dark);
   font-style: italic;
+}
+
+.focus-mode .hero-subtitle {
+  color: #a3c9a8;
 }
 
 .cta-group {
@@ -315,9 +349,18 @@ body {
   border: 2px solid var(--organic-green);
 }
 
+.focus-mode .cta-secondary {
+  color: #a3c9a8;
+  border-color: #47b5ff;
+}
+
 .cta-primary:hover, .cta-secondary:hover {
   transform: translateY(-5px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.focus-mode .cta-primary:hover, .focus-mode .cta-secondary:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .cta-primary::before {
@@ -355,6 +398,10 @@ body {
   background: var(--gradient-combo);
   box-shadow: 0 0 20px rgba(74, 124, 89, 0.5);
   animation: pulse 2s infinite alternate;
+}
+
+.focus-mode .node {
+  box-shadow: 0 0 20px rgba(71, 181, 255, 0.5);
 }
 
 .node:nth-child(1) {
@@ -437,6 +484,11 @@ body {
   position: relative;
 }
 
+.focus-mode .knowledge-section {
+  background: #1a1a2e;
+  color: var(--text-light);
+}
+
 .section-header {
   text-align: center;
   margin-bottom: 4rem;
@@ -452,9 +504,20 @@ body {
   background-clip: text;
 }
 
+.focus-mode .section-header h2 {
+  background: linear-gradient(135deg, #47b5ff, #a3c9a8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .section-header p {
   font-size: 1.2rem;
   color: var(--organic-dark);
+}
+
+.focus-mode .section-header p {
+  color: #a3c9a8;
 }
 
 .knowledge-grid {
@@ -474,6 +537,13 @@ body {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(74, 124, 89, 0.1);
+  cursor: pointer;
+}
+
+.focus-mode .knowledge-card {
+  background: #16213e;
+  border-color: rgba(71, 181, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .knowledge-card::before {
@@ -491,6 +561,10 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
+.focus-mode .knowledge-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
 .card-icon {
   width: 70px;
   height: 70px;
@@ -504,6 +578,10 @@ body {
   color: white;
 }
 
+.focus-mode .card-icon {
+  background: linear-gradient(135deg, #47b5ff, #a3c9a8);
+}
+
 .knowledge-card h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
@@ -511,9 +589,17 @@ body {
   color: var(--organic-dark);
 }
 
+.focus-mode .knowledge-card h3 {
+  color: #a3c9a8;
+}
+
 .knowledge-card p {
   color: var(--text-dark);
   margin-bottom: 1.5rem;
+}
+
+.focus-mode .knowledge-card p {
+  color: var(--text-light);
 }
 
 .progress-ring {
@@ -533,6 +619,10 @@ body {
   stroke: #e6e6e6;
 }
 
+.focus-mode .progress-ring circle:first-child {
+  stroke: #2d3a4d;
+}
+
 .progress-ring circle:last-child {
   stroke: var(--gradient-combo);
   stroke-dashoffset: 0;
@@ -549,10 +639,18 @@ body {
   color: var(--organic-dark);
 }
 
+.focus-mode .percentage {
+  color: #a3c9a8;
+}
+
 /* 成长轨迹区域 */
 .growth-section {
   padding: 6rem 2rem;
   background: linear-gradient(to bottom, #f8f9fa, #e8f4f8);
+}
+
+.focus-mode .growth-section {
+  background: linear-gradient(to bottom, #1a1a2e, #16213e);
 }
 
 .timeline-container {
@@ -575,6 +673,10 @@ body {
   background: var(--gradient-combo);
   transform: translateX(-50%);
   border-radius: 2px;
+}
+
+.focus-mode .timeline::before {
+  background: linear-gradient(to bottom, #47b5ff, #a3c9a8);
 }
 
 .timeline-item {
@@ -606,6 +708,11 @@ body {
   transition: var(--transition);
 }
 
+.focus-mode .timeline-marker {
+  background: #1a1a2e;
+  border-color: #47b5ff;
+}
+
 .timeline-marker.active {
   background: var(--organic-green);
   border-color: var(--organic-green);
@@ -613,8 +720,18 @@ body {
   animation: glow 2s infinite alternate;
 }
 
+.focus-mode .timeline-marker.active {
+  background: #47b5ff;
+  border-color: #47b5ff;
+  box-shadow: 0 0 20px rgba(71, 181, 255, 0.5);
+}
+
 .timeline-marker.future {
   border-color: var(--tech-blue);
+}
+
+.focus-mode .timeline-marker.future {
+  border-color: #a3c9a8;
 }
 
 .timeline-content {
@@ -625,6 +742,12 @@ body {
   position: relative;
 }
 
+.focus-mode .timeline-content {
+  background: #16213e;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  color: var(--text-light);
+}
+
 .timeline-content::before {
   content: '';
   position: absolute;
@@ -633,6 +756,10 @@ body {
   background: white;
   transform: rotate(45deg);
   z-index: -1;
+}
+
+.focus-mode .timeline-content::before {
+  background: #16213e;
 }
 
 .timeline-item:nth-child(odd) .timeline-content::before {
@@ -661,10 +788,19 @@ body {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+.focus-mode .milestone-badge {
+  background: linear-gradient(135deg, #47b5ff, #a3c9a8);
+}
+
 /* 洞见区域 */
 .insights-section {
   padding: 6rem 2rem;
   background: white;
+}
+
+.focus-mode .insights-section {
+  background: #1a1a2e;
+  color: var(--text-light);
 }
 
 .insights-grid {
@@ -686,6 +822,12 @@ body {
   overflow: hidden;
 }
 
+.focus-mode .insight-card {
+  background: linear-gradient(145deg, #16213e, #1a1a2e);
+  border-color: rgba(71, 181, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
 .insight-card::after {
   content: '';
   position: absolute;
@@ -696,9 +838,17 @@ body {
   background: var(--gradient-combo);
 }
 
+.focus-mode .insight-card::after {
+  background: linear-gradient(to bottom, #47b5ff, #a3c9a8);
+}
+
 .insight-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.focus-mode .insight-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .insight-icon {
@@ -714,11 +864,19 @@ body {
   color: white;
 }
 
+.focus-mode .insight-icon {
+  background: linear-gradient(135deg, #47b5ff, #a3c9a8);
+}
+
 .insight-card h3 {
   font-size: 1.4rem;
   margin-bottom: 1rem;
   font-family: 'Space Grotesk', sans-serif;
   color: var(--organic-dark);
+}
+
+.focus-mode .insight-card h3 {
+  color: #a3c9a8;
 }
 
 .insight-card p {
@@ -727,12 +885,91 @@ body {
   line-height: 1.8;
 }
 
+.focus-mode .insight-card p {
+  color: var(--text-light);
+}
+
 .insight-meta {
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
   color: var(--organic-dark);
   font-style: italic;
+}
+
+.focus-mode .insight-meta {
+  color: #a3c9a8;
+}
+
+/* 冥想卡片 */
+.meditation-card {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(74, 124, 89, 0.1), rgba(42, 77, 105, 0.1));
+  border-radius: var(--border-radius);
+  text-align: center;
+  border: 1px solid rgba(74, 124, 89, 0.2);
+}
+
+.focus-mode .meditation-card {
+  background: linear-gradient(135deg, rgba(71, 181, 255, 0.1), rgba(163, 201, 168, 0.1));
+  border-color: rgba(71, 181, 255, 0.3);
+}
+
+.meditation-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--organic-dark);
+}
+
+.focus-mode .meditation-content h3 {
+  color: #a3c9a8;
+}
+
+.meditation-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.meditation-start {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  background: var(--gradient-combo);
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.focus-mode .meditation-start {
+  background: linear-gradient(135deg, #47b5ff, #a3c9a8);
+}
+
+.meditation-start:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.focus-mode .meditation-start:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.meditation-timer {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--organic-dark);
+}
+
+.focus-mode .meditation-timer {
+  color: #a3c9a8;
 }
 
 /* 连接区域 */
