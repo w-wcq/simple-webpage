@@ -14,6 +14,8 @@
   --proud-gold: #FFD700;
   --excited-orange: #FF8C42;
   --reflective-gray: #95A5A6;
+  --uncertain-yellow: #F1C40F;
+  --hopeful-green: #2ECC71;
   
   /* 中性色调 */
   --bg-light: #FAFAFA;
@@ -774,12 +776,12 @@ body {
   flex-shrink: 0;
 }
 
-.feeling-proud {
-  background: var(--proud-gold);
+.feeling-uncertain {
+  background: var(--uncertain-yellow);
 }
 
-.feeling-excited {
-  background: var(--excited-orange);
+.feeling-hopeful {
+  background: var(--hopeful-green);
 }
 
 .feeling-reflective {
