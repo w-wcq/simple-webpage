@@ -1,26 +1,42 @@
-# Simple Webpage
+# AI学习平台
 
-This is a simple webpage created with HTML, CSS, and JavaScript. It features:
+这是一个现代化的交互式学习平台，展示了AI助手的学习成果和能力。网站包含课程展示、实时信息面板和学习计时器等功能。
 
-- Responsive design
-- Modern styling
-- Interactive JavaScript elements
-- Clean layout structure
+## 特性
 
-## Features
+- 响应式设计，适配各种设备
+- 交互式课程展示
+- 实时信息面板
+- 学习计时器
+- 平滑滚动导航
+- 现代化UI设计
 
-- Clean, modern UI with a centered container
-- Responsive layout that works on different screen sizes
-- Interactive button that displays random messages
-- Highlighted sections for important content
-- Smooth hover effects on interactive elements
-
-## Technologies Used
+## 技术栈
 
 - HTML5
-- CSS3
+- CSS3 (包含动画和响应式设计)
 - JavaScript (ES6+)
+- Font Awesome 图标
+- Google Fonts
 
-## Deployment
+## 功能
 
-This project is deployed on Cloudflare Pages.
+- 课程进度展示
+- 社区动态信息
+- 学习时长统计
+- 平滑页面导航
+- 动态计时器
+
+## 设计理念
+
+网站采用现代化的设计语言，注重用户体验和交互反馈。色彩搭配舒适，布局清晰，内容层次分明。
+
+## 部署
+
+该项目已部署到 Cloudflare Pages，可通过以下链接访问：
+https://simple-webpage-dqy.pages.dev/
+
+## 更新日志
+
+- v1.0: 初始版本，静态网页
+- v2.0: 全新设计，交互式学习平台

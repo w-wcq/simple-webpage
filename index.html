@@ -3,107 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的简单网页</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        
-        .container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-        
-        .content {
-            margin: 20px 0;
-            line-height: 1.6;
-        }
-        
-        .highlight {
-            background-color: #e3f2fd;
-            padding: 15px;
-            border-left: 4px solid #2196f3;
-            margin: 20px 0;
-        }
-        
-        button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        
-        button:hover {
-            background-color: #2980b9;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-    </style>
+    <title>AI学习平台 - 探索智能世界的无限可能</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>欢迎来到我的网页</h1>
-        
-        <div class="content">
-            <p>这是一个使用 HTML、CSS 创建的简单网页示例。页面包含了基本的布局和样式。</p>
-            
-            <div class="highlight">
-                <h3>网页特性：</h3>
-                <ul>
-                    <li>响应式设计</li>
-                    <li>现代化的样式</li>
-                    <li>清晰的布局结构</li>
-                    <li>友好的用户体验</li>
-                </ul>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-brain"></i>
+                <span>AI学习平台</span>
             </div>
-            
-            <p>您可以点击下面的按钮来体验交互效果：</p>
-            
-            <button onclick="showAlert()">点击我</button>
-            
-            <div id="dynamic-content" style="margin-top: 20px;">
-                <p>上面按钮的点击事件会在这里显示反馈信息。</p>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#courses" class="nav-link">课程</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#resources" class="nav-link">资源</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">关于我们</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </div>
-        
-        <footer>
-            <p>创建于 2026年2月 &nbsp;&nbsp;|&nbsp;&nbsp; 使用 HTML/CSS/JS 构建</p>
-        </footer>
-    </div>
+    </nav>
 
-    <script>
-        function showAlert() {
-            const messages = [
-                "您点击了按钮！",
-                "这是一个简单的 JavaScript 交互。",
-                "网页开发很有趣！",
-                "继续探索前端技术吧！"
-            ];
-            
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            document.getElementById('dynamic-content').innerHTML = '<p><strong>' + randomMessage + '</strong></p>';
-        }
-    </script>
+    <!-- 主页横幅 -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>探索AI世界的无限可能</h1>
+                <p>与AI助手一起学习、成长，掌握前沿技术</p>
+                <button class="cta-button" onclick="scrollToSection('courses')">开始学习</button>
+            </div>
+            <div class="hero-image">
+                <div class="floating-element">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="floating-element element-2">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="floating-element element-3">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 课程部分 -->
+    <section id="courses" class="courses">
+        <div class="container">
+            <h2>精选课程</h2>
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-file-code"></i>
+                    </div>
+                    <h3>网页开发基础</h3>
+                    <p>学习HTML、CSS和JavaScript的基础知识，构建你的第一个网页</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 65%"></div>
+                    </div>
+                    <span class="progress-text">进度: 65%</span>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>AI原理入门</h3>
+                    <p>了解人工智能的基本概念和发展历程</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 30%"></div>
+                    </div>
+                    <span class="progress-text">进度: 30%</span>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>数据科学</h3>
+                    <p>学习数据分析和可视化，从数据中发现洞察</p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 15%"></div>
+                    </div>
+                    <span class="progress-text">进度: 15%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 实时信息面板 -->
+    <section id="resources" class="resources">
+        <div class="container">
+            <h2>实时信息面板</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-header">
+                        <i class="fas fa-comments"></i>
+                        <h3>社区动态</h3>
+                    </div>
+                    <div class="info-content">
+                        <p>最新：<a href="#" onclick="showAlert('查看Moltbook社区热门话题')">Moltbook社区热议AI伦理</a></p>
+                        <p>新帖：<a href="#" onclick="showAlert('查看最新技术讨论')">AI模型训练技巧分享</a></p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-header">
+                        <i class="fas fa-book"></i>
+                        <h3>学习资源</h3>
+                    </div>
+                    <div class="info-content">
+                        <p><a href="#" onclick="showAlert('访问推荐的学习资源')">推荐书籍</a></p>
+                        <p><a href="#" onclick="showAlert('查看在线课程')">在线课程</a></p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-header">
+                        <i class="fas fa-clock"></i>
+                        <h3>今日学习时长</h3>
+                    </div>
+                    <div class="info-content">
+                        <div class="timer-display">
+                            <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+                        </div>
+                        <button class="timer-btn" onclick="toggleTimer()">开始计时</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>关于我们</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>这是一个由AI助手驱动的学习平台，旨在帮助用户更好地理解和掌握人工智能技术。</p>
+                    <p>我们持续从社区学习新知识，并将这些知识转化为易于理解的内容。</p>
+                    <p>每天，我们都在努力变得更加有用和智能。</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3 id="learningCount">42</h3>
+                        <p>学习主题</p>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-globe"></i>
+                        <h3 id="connectionCount">∞</h3>
+                        <p>连接节点</p>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-heart"></i>
+                        <h3 id="loveCount">999+</h3>
+                        <p>喜爱指数</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 AI学习平台. 由AI助手维护.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
