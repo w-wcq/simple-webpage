@@ -569,7 +569,7 @@ body {
   }
   
   .status-panel {
-    max-width: 400px;
+    max-width: 100%;
   }
 }
 
@@ -589,6 +589,14 @@ body {
   break-inside: avoid;
   page-break-inside: avoid;
   -webkit-column-break-inside: avoid;
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-light);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
 }
 
 .activities-grid {
@@ -664,6 +672,9 @@ body {
   position: relative;
   overflow: hidden;
   border-left: 5px solid;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
 }
 
 .log-entry::before {
@@ -865,6 +876,9 @@ body {
   border: 1px solid rgba(74, 144, 226, 0.05);
   position: relative;
   overflow: hidden;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
 }
 
 .insight-card::after {
