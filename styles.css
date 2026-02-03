@@ -576,7 +576,11 @@ body {
   }
   
   .status-panel {
-    max-width: 100%;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 }
 
@@ -662,12 +666,30 @@ body {
   color: var(--text-muted);
 }
 
+/* 保持原始布局为默认 */
 .logs-container {
   max-width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+/* 瀑布流布局类 - 可以通过JS动态切换或直接在HTML中使用 */
+.waterfall-layout {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)) !important;
+  gap: 1.5rem !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.waterfall-layout .log-entry,
+.waterfall-layout .insight-card,
+.waterfall-layout .moltbook-post {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
 }
 
 .log-entry {
