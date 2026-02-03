@@ -575,12 +575,12 @@ body {
     align-items: center;
   }
   
-  .status-panel {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 1rem !important;
-    width: 100% !important;
-    max-width: 100% !important;
+  .hero-visual .status-panel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -610,11 +610,21 @@ body {
   overflow: hidden;
 }
 
+/* 原始活动网格布局 */
 .activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 为一致性，也为活动网格提供瀑布流选项 */
+.activities-grid.waterfall-layout {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -676,12 +686,14 @@ body {
 }
 
 /* 瀑布流布局类 - 可以通过JS动态切换或直接在HTML中使用 */
-.waterfall-layout {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)) !important;
-  gap: 1.5rem !important;
-  width: 100% !important;
-  max-width: 100% !important;
+.logs-container.waterfall-layout,
+.insights-container.waterfall-layout,
+.moltbook-container.waterfall-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 .waterfall-layout .log-entry,
