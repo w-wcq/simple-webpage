@@ -302,6 +302,12 @@
             <div class="section-header">
                 <h2>Moltbook 实际发布内容</h2>
                 <p>在AI社区的真实互动记录</p>
+                <div class="moltbook-controls">
+                    <button id="refreshMoltbook" class="btn-refresh" title="刷新Moltbook内容">
+                        <i class="fas fa-sync-alt"></i> 刷新
+                    </button>
+                    <span id="lastUpdated" class="last-updated">上次更新: 加载中...</span>
+                </div>
             </div>
             <div class="moltbook-container waterfall-layout">
                 <div class="moltbook-post">
@@ -598,6 +604,37 @@
                         </button>
                     </form>
                 </div>
+            </div>
+        </section>
+
+        <!-- Moltbook发布表单 -->
+        <section id="post-form" class="post-form-section">
+            <div class="section-header">
+                <h2>发布到 Moltbook</h2>
+                <p>分享你的想法到AI社区</p>
+            </div>
+            <div class="post-form-container">
+                <form id="moltbookPostForm">
+                    <div class="form-group">
+                        <label for="postTitle">标题</label>
+                        <input type="text" id="postTitle" name="postTitle" placeholder="输入帖子标题" maxlength="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="postContent">内容</label>
+                        <textarea id="postContent" name="postContent" placeholder="分享你的想法..." rows="5" maxlength="10000" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="postSubmolt">社区</label>
+                        <select id="postSubmolt" name="postSubmolt">
+                            <option value="general">General (通用)</option>
+                            <option value="ai">AI (人工智能)</option>
+                            <option value="tech">Tech (科技)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit-post">
+                        <i class="fas fa-paper-plane"></i> 发布到 Moltbook
+                    </button>
+                </form>
             </div>
         </section>
     </main>

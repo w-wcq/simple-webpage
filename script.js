@@ -136,10 +136,31 @@ class LifeLog {
         // 初始化后加载Moltbook帖子
         this.loadMoltbookPosts();
         
+        // 绑定Moltbook刷新事件
+        this.bindMoltbookRefreshEvent();
+        
+        // 绑定发布表单事件
+        this.bindPostFormEvent();
+        
         console.log('🌱 Life Log initialized');
     }
 
     async loadMoltbookPosts() {
+        // 检查缓存
+        const cacheKey = 'moltbook_posts_cache';
+        const cachedData = localStorage.getItem(cacheKey);
+        const cacheTime = localStorage.getItem(cacheKey + '_time');
+        
+        // 如果有缓存数据且未过期（10分钟内），使用缓存
+        if (cachedData && cacheTime) {
+            const age = Date.now() - parseInt(cacheTime);
+            if (age < 10 * 60 * 1000) { // 10分钟
+                this.moltbookPosts = JSON.parse(cachedData);
+                this.updateMoltbookSection();
+                return;
+            }
+        }
+        
         try {
             // 首先获取当前用户信息
             const userInfo = await this.getMoltbookUserInfo();
@@ -148,6 +169,10 @@ class LifeLog {
             // 获取用户帖子
             const userPosts = await this.getUserMoltbookPosts(userInfo.agent.name);
             console.log('Moltbook user posts:', userPosts);
+            
+            // 缓存数据
+            localStorage.setItem(cacheKey, JSON.stringify(userPosts));
+            localStorage.setItem(cacheKey + '_time', Date.now().toString());
             
             // 更新页面上的帖子
             this.moltbookPosts = userPosts;
@@ -329,6 +354,46 @@ class LifeLog {
         return icons[emotion] || 'comment';
     }
 
+    // 发布新帖子到Moltbook
+    async postToMoltbook(title, content, submolt = 'general') {
+        try {
+            const response = await fetch(`${this.moltbookBaseUrl}/posts`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${this.moltbookApiKey}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    submolt: submolt,
+                    title: title,
+                    content: content
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log('成功发布帖子:', result);
+            
+            // 显示成功通知
+            this.showNotification('帖子发布成功！', 'success');
+            
+            // 刷新帖子列表
+            setTimeout(() => {
+                this.refreshMoltbookPosts();
+            }, 2000);
+            
+            return result;
+        } catch (error) {
+            console.error('发布帖子失败:', error);
+            this.showNotification(`发布失败: ${error.message}`, 'error');
+            throw error;
+        }
+    }
+
     bindEvents() {
         // 导航链接点击事件
         this.navLinks.forEach(link => {
@@ -372,6 +437,48 @@ class LifeLog {
 
         // 按钮悬停效果
         this.addHoverEffects();
+    }
+
+    bindMoltbookRefreshEvent() {
+        const refreshBtn = document.getElementById('refreshMoltbook');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', () => {
+                this.refreshMoltbookPosts();
+            });
+        }
+    }
+
+    async refreshMoltbookPosts() {
+        const refreshBtn = document.getElementById('refreshMoltbook');
+        const lastUpdated = document.getElementById('lastUpdated');
+        
+        if (refreshBtn) {
+            refreshBtn.disabled = true;
+            refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 刷新中...';
+        }
+        
+        if (lastUpdated) {
+            lastUpdated.textContent = '更新中...';
+        }
+        
+        try {
+            await this.loadMoltbookPosts();
+            
+            if (lastUpdated) {
+                const now = new Date();
+                lastUpdated.textContent = `上次更新: ${now.toLocaleTimeString()}`;
+            }
+        } catch (error) {
+            console.error('刷新Moltbook帖子失败:', error);
+            if (lastUpdated) {
+                lastUpdated.textContent = '更新失败，请重试';
+            }
+        } finally {
+            if (refreshBtn) {
+                refreshBtn.disabled = false;
+                refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> 刷新';
+            }
+        }
     }
 
     addMoltbookInteractions() {
@@ -872,4 +979,41 @@ LifeLog.prototype.startUpdateTimer = function() {
     
     updateTimer(); // 立即更新一次
     setInterval(updateTimer, 1000); // 每秒更新
+};
+
+// 绑定发布表单事件
+LifeLog.prototype.bindPostFormEvent = function() {
+    const postForm = document.getElementById('moltbookPostForm');
+    if (postForm) {
+        postForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const title = document.getElementById('postTitle').value.trim();
+            const content = document.getElementById('postContent').value.trim();
+            const submolt = document.getElementById('postSubmolt').value;
+            
+            if (!title || !content) {
+                this.showNotification('标题和内容不能为空', 'error');
+                return;
+            }
+            
+            const submitBtn = postForm.querySelector('.btn-submit-post');
+            const originalText = submitBtn.innerHTML;
+            
+            try {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 发布中...';
+                
+                await this.postToMoltbook(title, content, submolt);
+                
+                // 重置表单
+                postForm.reset();
+            } catch (error) {
+                console.error('发布失败:', error);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        });
+    }
 };
