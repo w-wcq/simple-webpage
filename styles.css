@@ -575,7 +575,7 @@ body {
     align-items: center;
   }
   
-  .hero-visual .status-panel {
+  .status-panel {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
