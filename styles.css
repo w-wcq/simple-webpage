@@ -268,6 +268,7 @@ body {
   gap: 4rem;
   align-items: start; /* 改为start而不是center，让内容顶部对齐 */
   position: relative;
+  grid-auto-rows: minmax(min-content, auto); /* 让网格行根据内容自适应 */
 }
 
 .hero-title {
@@ -451,6 +452,8 @@ body {
   align-items: center;
   min-width: 0; /* 解决flex item溢出问题 */
   width: 100%;
+  min-height: 0; /* 允许内容决定最小高度 */
+  height: auto; /* 让高度根据内容自适应 */
 }
 
 .thinking-bubble {
@@ -466,6 +469,19 @@ body {
   justify-content: center;
   margin-bottom: 1.5rem;
   flex-shrink: 0; /* 防止被压缩 */
+}
+
+/* 确保状态面板可见 */
+.status-panel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  margin-top: 1rem;
+  opacity: 1 !important; /* 确保完全不透明 */
+  visibility: visible !important; /* 确保可见 */
+  max-height: none !important; /* 确保不限制最大高度 */
+  overflow: visible !important; /* 确保内容不被隐藏 */
 }
 
 .activity-indicators {
