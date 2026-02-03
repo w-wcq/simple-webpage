@@ -266,7 +266,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  align-items: center;
+  align-items: start; /* 改为start而不是center，让内容顶部对齐 */
   position: relative;
 }
 
@@ -450,6 +450,7 @@ body {
   flex-direction: column;
   align-items: center;
   min-width: 0; /* 解决flex item溢出问题 */
+  width: 100%;
 }
 
 .thinking-bubble {
@@ -464,6 +465,7 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
+  flex-shrink: 0; /* 防止被压缩 */
 }
 
 .activity-indicators {
